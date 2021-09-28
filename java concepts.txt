@@ -1,0 +1,365 @@
+
+import java.util.*;
+
+//1.inheritance//
+class X{
+}
+class x1 extends X{
+}
+class x2 extends X{
+}
+class Re{
+	public static void main(String args[]) {
+		int a = 10;
+		int b = 5;
+		X x;
+		System.out.println("calculator program using inheritance");
+		System.out.println("the addition is :"+(a+b));
+		x = new X();
+		System.out.println("the subtraction is :"+(a-b));
+		x = new x1();
+		System.out.println("the multiplication is :"+(a*b));
+		x = new x2();
+	}
+	
+}
+//2.SuperKeyword//
+class m1{
+	int i = 100;
+}
+class m2 extends m1{
+	int i = 200;
+	void display() {
+		System.out.println("calculator program using superkeyword");
+		System.out.println("i = "+ i);
+		System.out.println("super.i = "+super.i );
+		System.out.println("addition is = "+(super.i + i) );
+		System.out.println("subtraction is = "+(super.i-i) );
+		
+	}
+}
+class Superkeyword{
+	public static void main(String args[]) {
+		m2 M2 = new m2();
+		M2.display();
+	}
+}
+//3.method overriding//
+class a1{
+	void calculatorprogram() {
+		int y = 90;
+		int v = 80;
+		System.out.println("calculator program using method overriding");
+		System.out.println("the addition is "+(y+v) );
+	}
+}
+class b1 extends a1{
+	void calculatorprogram() {
+		int y = 90;
+		int v = 80;
+		System.out.println("the subtraction is "+(y-v) );
+	}
+}
+class c1 extends b1{
+	void calculatorprogram() {
+		int y = 90;
+		int v = 80;
+		System.out.println("the multiplication is "+(y*v) );
+	}
+}
+class Methodoverriding1{
+	public static void main(String args[]) {
+		a1 obj = new a1();
+		b1 obj1 = new b1();
+		c1 obj2 = new c1();
+		obj.calculatorprogram();
+		obj1.calculatorprogram();
+		obj2.calculatorprogram();
+	}
+}
+//4.abstract class//
+abstract class calculatorr{
+	void display(){
+	}
+}
+class add4 extends calculatorr{
+	void display() {
+		int h = 50;
+		int k = 30;
+		System.out.println("calculator program using abstract class");
+		System.out.println("addition is"+(h+k));
+	}
+}
+class sub4 extends calculatorr{
+	void display() {
+		int h = 50;
+		int k = 30;
+		System.out.println("sub is"+(h-k));
+	}
+}
+class mul4 extends calculatorr{
+	void display() {
+		int h = 50;
+		int k = 30;
+		System.out.println("multiplication is"+(h*k));
+	}
+}
+class abstractclass2{
+	public static void main(String args[]) {
+		calculatorr r = new add4();
+		r.display();
+		r = new sub4();
+		r.display();
+		r = new mul4();
+		r.display();
+	}
+}
+//5. using keyword final//
+class o{
+	static final int n = 10;
+}
+class finalkey {
+	public static void main(String args[]) {
+	System.out.println("final creates named constants");	
+	System.out.println(o.n);	
+	}
+}
+
+// 6.interface concept using constants//
+interface cons{
+	int u = 60;
+	int p = 50;
+}
+abstract class cons1{
+	int CONS2;
+}
+class element1 extends cons1{
+	element1(int CONS2) {
+		this.CONS2 = CONS2;	
+	}
+}
+class element2 extends cons1{
+	element2(int CONS2) {
+		this.CONS2 = CONS2;	
+	}
+}	
+class interfacecalci{
+	public static void main(String args[]) {
+		element1 Element1 = new element1(cons.p);
+		element2 Element2 = new element2(cons.u);
+		System.out.println("INTERFACE CONCEPT: \n printing constant values of element 1&2");
+		System.out.println(Element1.CONS2);
+		System.out.println(Element2.CONS2);
+		
+	}
+}
+// 7.exception handling//
+class divisionexceptionhandling {
+	public static void main(String args[]) {
+		try {
+			System.out.println("expection handling");
+			System.out.println("before division");
+			int i = 2500;
+			int j = 50;
+			System.out.println(i/j);
+			System.out.println("after division");
+			
+			}
+		catch (ArithmeticException e) {
+			System.out.println("ArithmeticException");
+		}
+		
+		catch (NumberFormatException e) {
+			System.out.println("NumberFormatException");
+			
+		}
+		finally {
+			System.out.println("Finally block");
+		}}
+}
+//8 threads//
+class RunnableY implements Runnable{
+	public void run() {
+	}{
+		try {
+			int a = 5;
+			int b = 2;
+			System.out.println("Threading concept");
+			for (int i =0; i<4; i++) {
+				Thread.sleep(2000);
+				System.out.println("the sum is"+(a+b));
+				System.out.println("the sub is"+(a-b));
+			}
+		}
+		catch (InterruptedException ex) {
+			ex.printStackTrace();
+		}
+	}
+}
+class Thread2 {
+	public static void main (String args[]){
+		RunnableY s = new RunnableY();
+		Thread t = new Thread(s);
+		t.start();
+	}
+	
+}
+//9 .using synchronization//
+class calcsyn{
+	synchronized public void display(String msg)
+	  {
+	    System.out.print ("["+msg);
+	    try
+	    {
+	      Thread.sleep(500);
+	    }
+	    catch(InterruptedException e)
+	    {
+	      e.printStackTrace();
+	    }
+	    System.out.println ("]");
+	  }
+	}
+	
+class calcsyn1 extends Thread
+{ 
+  String msg;
+  calcsyn fobj;
+  calcsyn1 (calcsyn fp,String str)
+  {
+    fobj = fp;
+    msg = str;
+    start();
+  }
+  public void run()
+  {
+    fobj.display(msg);
+  }
+}
+
+ class Revision
+{ 
+  public static void main (String[] args)
+  {
+	  
+	calcsyn fnew = new calcsyn();
+    int a = 50;
+	int b = 20;
+	System.out.println("synchronization method");
+	calcsyn1 s = new calcsyn1(fnew, "ADDITION is " +(a+b));
+	calcsyn1 s1= new calcsyn1(fnew,"SUBTRACTION is " +(a-b));
+	calcsyn1 s2 = new calcsyn1(fnew, "PRODUCT is " +(a*b));
+  }
+}
+//10.Enumeration//
+enum cr{
+	ADD,
+	SUB,
+	MUL
+}
+ class enumeration {
+	static cr s1;
+	
+	public enumeration(cr s1) { 
+		enumeration.s1 = s1;
+		
+	}
+
+	public enumeration() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void display()
+	{
+		int b = 20 ;
+		int a = 40 ;
+		switch(s1) {
+			case ADD:
+				System.out.println("THE ADDITION IS:  " + (a+b));
+				break;
+			case SUB:
+				System.out.println("THE SUBTRACTION IS:  "+ (a-b) );
+				break;
+			case MUL:
+				
+				System.out.println("THE MULTIPLICATION IS:  "+ (a*b) );
+				break;
+		}
+		  
+	}
+public static void main(String[] args) {
+		
+	
+		Scanner obj1 = new Scanner(System.in);
+		System.out.println("Enter the operation in Capital letters");
+		String str = obj1.next();
+		enumeration d1 = new enumeration(cr.valueOf(str));
+		
+		d1.display();
+		
+	}
+
+}
+ 
+ 
+//11.Auto Boxing or Boxing
+//Autoboxing example of int to Integer and performing addition. 
+class Wrapperclass1{  
+public static void main(String args[]){  
+//Converting int into Integer  
+int a=20;
+int b=10;
+Integer i=Integer.valueOf(a);//converting int into Integer explicitly 
+Integer j=Integer.valueOf(b);
+Integer k=a;//autoboxing, now compiler will write Integer.valueOf(a) internally  
+Integer l=b;//autoboxing, now compiler will write Integer.valueOf(b) internally
+System.out.println("wrapper class autoboxing:\nsum of a&b is ");
+System.out.println((a+b));  
+}}  
+ //unboxing
+ //unboxing Integer to int and performing subtraction
+  class Wrapperclass2{    
+	 public static void main(String args[]){    
+	 //Converting Integer to int    
+	 Integer a=new Integer(3);   
+	 Integer b=new Integer(2);
+	 int i=a.intValue();//converting Integer to int explicitly  
+	 int j=b.intValue();
+	 int k=a;//unboxing, now compiler will write a.intValue() internally    
+	 int l=a;  
+	 System.out.println("wrapper class unboxing:\nsub of a&b is ");
+	 System.out.println((a-b));    
+	 }}    
+  
+  //12.string handling
+   class searchingstring {
+
+		public static void main(String[] args) {
+			Scanner s = new Scanner(System.in);
+			
+			System.out.println("Enter a text:");
+			String str = s.nextLine();
+			
+			String word[] = str.split(" ");
+			
+			
+			System.out.println("Enter the word to be searched:");
+			String search = s.nextLine();
+			int count = 0;
+			
+			System.out.println("The given word occured in the text in the positions :");
+			for(int i=0;i<word.length;i++)
+			{
+				word[i] = word[i].replace(".","");
+				
+				if(word[i].equals(search))
+				{
+					count += 1;
+					System.out.println(i+1);
+				}
+			}
+			System.out.println("The number of times the given word occurred in the text: " + count);
+		}
+
+	}
+   
